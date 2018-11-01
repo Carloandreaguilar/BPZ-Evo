@@ -25,8 +25,19 @@ public class Cargo implements Serializable{
 	@NotNull
 	private double sueldo;
 
+	public Cargo crear(Long idCargo, @NotNull String nombre, @NotNull double sueldo) {
+		this.idCargo = idCargo;
+		this.nombre = nombre;
+		this.sueldo = sueldo;
+		return new Cargo(idCargo,nombre,sueldo);
+	}
 	
-	
+	public Cargo(Long idCargo, @NotNull String nombre, @NotNull double sueldo) {
+		this.idCargo = idCargo;
+		this.nombre = nombre;
+		this.sueldo = sueldo;
+	}
+
 	public Long getIdCargo() {
 		return idCargo;
 	}

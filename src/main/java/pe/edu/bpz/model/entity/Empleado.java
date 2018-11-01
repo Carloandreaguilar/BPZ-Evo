@@ -29,8 +29,25 @@ public class Empleado implements Serializable {
 	@NotNull
 	private Long celular;
 	
+	public Empleado(@NotNull Long idEmpleado, @NotNull String nombre, @NotNull String apellido, @NotNull Long codigo,
+			@NotNull Long celular) {
+		this.idEmpleado = idEmpleado;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.codigo = codigo;
+		this.celular = celular;
+	}
 	
-	
+	public Empleado crear(@NotNull Long idEmpleado, @NotNull String nombre, @NotNull String apellido, @NotNull Long codigo,
+			@NotNull Long celular) {
+		this.idEmpleado = idEmpleado;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.codigo = codigo;
+		this.celular = celular;
+		return new Empleado(idEmpleado,nombre,apellido,codigo,celular);
+	}
+
 	public Long getIdEmpleado() {
 		return idEmpleado;
 	}

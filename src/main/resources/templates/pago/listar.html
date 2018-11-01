@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  
+  <nav th:replace="layout/layout :: nav"></nav>
+  
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" th:text="${titulo}"></li>
+      </ol>
+
+      
+    <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Facturas Por Pagar</div>
+        <div class="card-body">
+          <div class="table-responsive">
+          	<form method="post" th:action="@{/pago/pagar}">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                	
+					<th>Seleccionar</th>
+					<th>Numero de Factura</th>
+					<th>Fecha de Vencimiento</th>
+					<th>Total</th>
+					<th>Estado</th>
+					<th>Editar</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr th:each="factura: ${facturas}">
+                	<td><input type="checkbox" aria-label="Checkbox for following text input" name="idfacturas" th:value="${factura.id}"></td>
+							<td th:text="${factura.numFactura}"></td>
+							<td th:text="${factura.fechaVencimiento}"></td>
+							<td th:text="${factura.total}"></td>
+							<td th:text="${factura.estado}"></td>
+							<td><a class="btn btn btn-outline-warning btn-sm"
+								th:href="@{/factura/editar/} + ${factura.id}" th:text="'editar'"
+								></a></td>
+							
+								
+                </tr>
+              </tbody>
+            </table>
+           <input type="submit" th:value="'Pagar Facturas'"
+								class="btn btn-danger" />
+            </form>
+          </div>
+          
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+     
+    <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Facturas pagadas</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+           		<thead>
+                <tr>
+                	
+					<th>Id</th>
+					<th>Numero de Factura</th>
+					<th>Razon Social</th>
+					<th>Fecha de Vencimiento</th>
+					
+					<th>Total</th>
+					<th>Estado</th>
+					
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr th:each="facturapag: ${facturaspag}">
+                	<td th:text="${facturapag.id}"></td>
+							<td th:text="${facturapag.numFactura}"></td>
+							<td th:text="${facturapag.proveedor.razonSocial}"></td>
+							<td th:text="${facturapag.fechaVencimiento}"></td>
+							
+							<td th:text="${facturapag.total}"></td>
+							<td th:text="${facturapag.estado}"></td>
+							
+							
+								
+                </tr>
+              </tbody>
+            </table>
+          </div>
+         
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+   
+    </div>
+    
+  
+    <footer th:replace="layout/layout :: footer"></footer>
+    
+    <div th:replace="layout/layout :: div"></div>
+  </div>
+</body>
+
+</html>

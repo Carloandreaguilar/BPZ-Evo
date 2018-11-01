@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  
+   <nav th:replace="layout/layout :: nav"></nav>
+ 
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Crear Factura</li>
+      </ol>
+
+      	<div class="card mb-3 mt-4">
+      		<div class="card-header">
+      			<i class="fa fa-newspaper-o"></i> Facturas	
+      		</div>
+      		<div class="card-body">
+      			<form th:action="@{/factura/crear/}" th:object="${facturaViewModel}" method="post">
+				  	<input type= "hidden" th:field="*{factura.id}" />
+				  	
+				  	
+					<div class="form-group row">
+					    <label for="codigo_servicio" class="form-group">Código de Servicio</label>
+					    <div class="col-sm-2">
+						    <select th:field="*{factura.codigoServicio}" class="form-control" id="exampleFormControlSelect1">
+						      <option th:value="4">4</option>
+						      <option th:value="7">7</option>
+						      <option th:value="10">10</option>
+						      <option th:value="12">12</option>
+						      <option th:value="14">14</option>
+						      <option th:value="17">17</option>
+						    </select>
+						</div>
+				  	</div>
+				  <div class="form-row">
+				    <div class="form-group">
+				      <label for="inputEmail4">Numero Factura</label>
+				      <input type="text" th:field="*{factura.numFactura}" class="form-control" name="femi" >
+				    </div>
+				    <div class="form-group">
+				      <label for="inputPassword4">F. Emision</label>
+				      <input type="date" th:field="*{fechaEmision}" class="form-control" name="feven" >
+				    </div>
+				    <div class="form-group">
+				      <label for="inputPassword4">F. Vencimiento</label>
+				      <input type="date" th:field="*{fechaVencimiento}" class="form-control" name="feven" >
+				    </div>
+				    <div class="form-group">
+				      <label for="inputPassword4">Periodo D.</label>
+				      <input type="date" th:field="*{fechaPeriodo}" class="form-control" name="fepe"  >
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <div class="col-sm-6">
+				    <label>Descripcion</label>
+							<textarea rows="4" cols="50" th:field="*{factura.descripcion}" class="form-control" th:errorclass="'form-control is-invalid'">
+							</textarea>							
+						</div>
+				  </div>
+				  <div class="form-row">
+				    <div class="form-group col">
+				      <label for="inputCity">Moneda</label>
+				      	<select class="form-control" th:field="*{factura.tipoMoneda}">
+						  <option th:value="10" th:text="Dolar"></option>
+						  <option th:value="01" th:text="Soles"></option>
+						</select>
+				    </div>
+				  
+				    <div class="form-group col">
+				      <label for="subtotal">Subtotal</label>
+				      <input type="number" th:field="*{factura.subtotal}" class="form-control" id="subtotal">
+				    </div>
+				    
+				    
+				        <div class="form-group col">
+				    <label th:text="'IGV'"></label>
+					<label class="form-control">18%</label>
+				    </div>
+				    
+				     <div class="form-group col">
+				      <label for="total">Total</label>
+				      <input readonly th:field="*{factura.total}" class="form-control" id="total">
+				    </div>
+				    
+				
+				    
+				    
+				    <div class="form-group col">
+						<label for="exampleFormControlSelect1">Detracciones</label>
+							 <select style="width:200px;" th:field="*{factura.porcentajeDetraccion}" class="form-control" id="exampleFormControlSelect1">
+						      <option th:value="1.5">1.5 </option>
+						      <option th:value="4">4</option>
+						      <option th:value="10">10</option>
+						      <option th:value="12">12</option>
+						      <option th:value="15">15</option>
+						    </select>
+						</div>
+						
+						
+						
+				    <div class="form-group col-4">
+						<label>Proveedor</label>
+						<div class="form-group">
+							<select  class="form-control" id="ProveedorSelect" th:field="*{proveedor}">
+								<option th:each="proveedor: ${proveedores}" th:value="${proveedor.idProveedor}" th:text="${proveedor.razonSocial}"></option>
+								
+							</select>
+						</div>
+					</div>
+				  </div>
+				  
+					
+				     
+						
+						
+				  
+				  <button type="submit" class="btn btn-primary">Crear</button>
+				</form>
+      		</div>
+      	</div>	
+      	
+
+   			
+      </div>
+     
+   
+    </div>
+    
+    <footer th:replace="layout/layout :: footer"></footer>
+    
+    <div th:replace="layout/layout :: div"></div>
+     
+ <script th:src="@{/js/CalcularTotal.js}"></script>
+</body>
+
+</html>

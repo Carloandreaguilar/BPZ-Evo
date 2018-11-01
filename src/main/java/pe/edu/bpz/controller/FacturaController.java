@@ -46,7 +46,7 @@ public class FacturaController {
 		return "/factura/listar";	
 	}
 	
-	@Secured("ROLE_CUENTAS")
+	//@Secured("ROLE_CUENTAS")
 	@GetMapping(value = "/crear")
 	public String crear(Model model) {
 		FacturaViewModel facturaViewModel = new FacturaViewModel();
@@ -58,7 +58,7 @@ public class FacturaController {
 		return "factura/crear";
 	}
 	
-	@Secured("ROLE_CUENTAS")
+	//@Secured("ROLE_CUENTAS")
 	@SuppressWarnings("deprecation")
 	@PostMapping(value="/crear")
 	public String guardar(@Valid FacturaViewModel facturaViewModel, BindingResult result,Model model, RedirectAttributes flash,
@@ -97,7 +97,7 @@ public class FacturaController {
 		return "redirect:/factura/listar";
 	}
 	
-	@Secured("ROLE_CUENTAS")
+	//@Secured("ROLE_CUENTAS")
 	@RequestMapping(value = "/crear/{id}")
 	public String editar(@PathVariable(value = "id") Long id, Model model, @Valid FacturaViewModel facturaViewModel,
 			BindingResult result, RedirectAttributes flash,	SessionStatus status) {
