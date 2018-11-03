@@ -1,0 +1,2 @@
+En el presente folder se presentan los test realizados en Eclipse para algunas de las clases importantes de nuestro proyecto.
+Intentamos probar que se presentan los correspondientes errores al a hora de la validacion de ingreso de datos.
